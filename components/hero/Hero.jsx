@@ -33,7 +33,7 @@ export const Hero = () => {
             fullName: userInfo.full_name,
           };
         } else {
-          return {};
+          return false;
         }
       });
     };
@@ -54,14 +54,6 @@ export const Hero = () => {
   const handleLogin = async () => {
     await LoginIn();
     await getUser();
-    // setUser(() => {
-    //   const userInfo = userRes?.user_metadata;
-    //   return {
-    //     avatar: userInfo.avatar_url,
-    //     email: userInfo.email,
-    //     name: userInfo.full_name,
-    //   };
-    // });
   };
 
   return (
