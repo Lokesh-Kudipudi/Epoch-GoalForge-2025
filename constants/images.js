@@ -1,7 +1,7 @@
 const imageNames = [
   "one.png",
-  "two.png",
-  "three.png",
+  "twoTemplate.png",
+  "threeTemplate.png",
   "four.png",
   "five.png",
   "six.png",

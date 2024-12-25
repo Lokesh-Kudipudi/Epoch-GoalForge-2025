@@ -15,10 +15,13 @@ import {
 } from "@/lib/api";
 import LogoutButton from "./LogoutButton";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const Hero = () => {
-  const { user, setUser } = useCustomContext();
+  const { user, setUser, setProcessing, setStatus } =
+    useCustomContext();
   const [value, setValue] = useState();
+  const router = useRouter();
 
   useEffect(() => {
     const setInitUser = async () => {
@@ -46,9 +49,15 @@ export const Hero = () => {
   };
 
   const handleSubmitResolution = async () => {
+    setProcessing(() => true);
+    router.push("/thankyou");
+    setStatus(() => "Forging RoadMap");
     const responseObject = await getRoadMap(value);
-    const data = await insertData(user, responseObject);
-    await getPDF(data[0]);
+    setStatus(() => "Crafting PDF");
+    await insertData(user, responseObject);
+    await getPDF({ ...user, ...responseObject });
+    setStatus(() => "Done");
+    setProcessing(() => false);
   };
 
   const handleLogin = async () => {
@@ -66,10 +75,10 @@ export const Hero = () => {
       <div className="text-center flex items-center flex-col">
         {user && <h2>{user.full_name}</h2>}
         <h1 className="text-4xl md:text-5xl font-bold mb-1">
-          Welcome to Goal Forge
+          Goal Forge
         </h1>
         <p className="text-lg md:text-xl text-gray-300">
-          Roadmap for your New Year Resolutions
+          Win your resolutions with epoch
         </p>
         {user ? (
           <>
