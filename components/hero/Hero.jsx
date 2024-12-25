@@ -14,6 +14,7 @@ import {
   Logout,
 } from "@/lib/api";
 import LogoutButton from "./LogoutButton";
+import Image from "next/image";
 
 export const Hero = () => {
   const { user, setUser } = useCustomContext();
@@ -52,15 +53,15 @@ export const Hero = () => {
 
   const handleLogin = async () => {
     await LoginIn();
-    const userRes = await getUser();
-    setUser(() => {
-      const userInfo = userRes?.user_metadata;
-      return {
-        avatar: userInfo.avatar_url,
-        email: userInfo.email,
-        name: userInfo.full_name,
-      };
-    });
+    await getUser();
+    // setUser(() => {
+    //   const userInfo = userRes?.user_metadata;
+    //   return {
+    //     avatar: userInfo.avatar_url,
+    //     email: userInfo.email,
+    //     name: userInfo.full_name,
+    //   };
+    // });
   };
 
   return (
@@ -89,7 +90,21 @@ export const Hero = () => {
           <LoginButton handleLogin={handleLogin}></LoginButton>
         )}
       </div>
-      <LogoutButton handleLogout={handleLogout}></LogoutButton>
+      {user && (
+        <LogoutButton handleLogout={handleLogout}></LogoutButton>
+      )}
+      {user && (
+        <Image
+          src={user.avatar}
+          width={50}
+          height={50}
+          alt="avatar"
+          onClick={() => {
+            console.log(user);
+          }}
+          className="absolute rounded-full top-[20px] right-[20px]"
+        ></Image>
+      )}
     </motion.div>
   );
 };
