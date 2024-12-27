@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { textVariants } from "../../constants/animations";
+import Image from "next/image";
+import epochLogo from "@/assets/epoch_logo.png";
 
 export const PreloaderText = () => {
   return (
@@ -10,12 +12,17 @@ export const PreloaderText = () => {
       animate="animate"
       exit="exit"
     >
-      <h1 className="text-3xl md:text-6xl font-bold text-white tracking-wider">
-        Epoch Presents
-        <span className="block text-center text-2xl md:text-4xl mt-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-          Goal Forge
-        </span>
-      </h1>
+      <div className="flex flex-col items-center gap-0">
+        <Image
+          src={epochLogo}
+          alt="Epoch Logo"
+          height={200}
+          width={200}
+        ></Image>
+        <h1 className="text-md md:text-base font-bold -translate-y-12 text-gray-400 tracking-wider">
+          Presents
+        </h1>
+      </div>
     </motion.div>
   );
 };

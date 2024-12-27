@@ -1,6 +1,8 @@
 "use client";
 import { useCustomContext } from "@/contexts/ContextProvider";
 import { motion } from "framer-motion";
+import epochLogo from "@/assets/epoch_logo.png";
+import Image from "next/image";
 
 function ThankYou() {
   const { processing, status } = useCustomContext();
@@ -21,7 +23,15 @@ function ThankYou() {
             <div className="mt-3">{status}</div>
           </>
         ) : (
-          <h1>Thank You!!</h1>
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="text-2xl">Thank You</h1>
+            <Image
+              src={epochLogo}
+              alt="Epoch Logo"
+              width={100}
+              height={100}
+            ></Image>
+          </div>
         )}
       </div>
     </motion.div>

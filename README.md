@@ -11,8 +11,4 @@ Compete with others those with the highest resolution scores will win exciting 
 ## Things to do
 
 - Testing for Bugs
-- Think of the Profile photo alternative
-- GIF for Processing Screen
-- Made with Epoch Team Header
 - LeaderBoard
-- Enable RLS for supabase

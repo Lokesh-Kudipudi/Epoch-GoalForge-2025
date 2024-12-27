@@ -16,6 +16,7 @@ import {
 import LogoutButton from "./LogoutButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import goalForgeLogo from "@/assets/goalForge_Logo.png";
 
 export const Hero = () => {
   const { user, setUser, setProcessing, setStatus } =
@@ -49,8 +50,8 @@ export const Hero = () => {
   };
 
   const handleSubmitResolution = async () => {
-    setProcessing(() => true);
     router.push("/thankyou");
+    setProcessing(() => true);
     setStatus(() => "Forging RoadMap");
     const responseObject = await getRoadMap(value);
     setStatus(() => "Crafting PDF");
@@ -73,23 +74,27 @@ export const Hero = () => {
       className="min-h-screen bg-gradient-to-br from-purple-900 items-center via-black to-black text-white flex justify-center"
     >
       <div className="text-center flex items-center flex-col">
-        {user && <h2>{user.full_name}</h2>}
-        <h1 className="text-4xl md:text-5xl font-bold mb-1">
-          Goal Forge
-        </h1>
-        <p className="text-lg md:text-xl text-gray-300">
-          Win your resolutions with epoch
-        </p>
-        {user ? (
-          <>
-            <TextBox value={value} setValue={setValue}></TextBox>
-            <SubmitButton
-              handleSubmitResolution={handleSubmitResolution}
-            ></SubmitButton>
-          </>
-        ) : (
-          <LoginButton handleLogin={handleLogin}></LoginButton>
-        )}
+        <Image
+          src={goalForgeLogo}
+          alt="Goal Forge Logo"
+          width={250}
+          height={250}
+        ></Image>
+        <div className="-translate-y-16">
+          {user ? (
+            <>
+              <TextBox
+                value={value}
+                setValue={setValue}
+              ></TextBox>
+              <SubmitButton
+                handleSubmitResolution={handleSubmitResolution}
+              ></SubmitButton>
+            </>
+          ) : (
+            <LoginButton handleLogin={handleLogin}></LoginButton>
+          )}
+        </div>
       </div>
       {user && (
         <LogoutButton handleLogout={handleLogout}></LogoutButton>
@@ -100,10 +105,7 @@ export const Hero = () => {
           width={50}
           height={50}
           alt="avatar"
-          onClick={() => {
-            console.log(user);
-          }}
-          className="absolute rounded-full top-[20px] right-[20px]"
+          className="absolute rounded-full top-[50px] right-[20px]"
         ></Image>
       )}
     </motion.div>
