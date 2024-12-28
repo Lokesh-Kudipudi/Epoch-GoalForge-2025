@@ -13,7 +13,7 @@ function Header() {
             <span className="text-red-700 text-2xl">
               &hearts;
             </span>{" "}
-            from team Epoch.
+            from Team Epoch.
           </p>
         </div>
       )}
