@@ -17,6 +17,7 @@ import LogoutButton from "./LogoutButton";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import goalForgeLogo from "@/assets/goalForge_Logo.png";
+// import { generateTestPDF } from "@/lib/generateTestPdf";
 
 export const Hero = () => {
   const { user, setUser, setProcessing, setStatus } =
@@ -66,6 +67,10 @@ export const Hero = () => {
     await getUser();
   };
 
+  // const handleTestPDF = async () => {
+  //   generateTestPDF();
+  // };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -90,9 +95,21 @@ export const Hero = () => {
               <SubmitButton
                 handleSubmitResolution={handleSubmitResolution}
               ></SubmitButton>
+              <div className="flex flex-col gap-1 items-start mt-4 text-gray-400">
+                <p>1) Enter your new year resolutions.</p>
+                <p>2) Click on the submit button.</p>
+                <p>3) Wait for the magic to happen.</p>
+              </div>
             </>
           ) : (
-            <LoginButton handleLogin={handleLogin}></LoginButton>
+            <>
+              <LoginButton
+                handleLogin={handleLogin}
+              ></LoginButton>
+              <p className="text-gray-400 mt-2 font-serif">
+                Login using Institute mail id.
+              </p>
+            </>
           )}
         </div>
       </div>
