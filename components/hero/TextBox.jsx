@@ -9,6 +9,7 @@ function TextBox({ value, setValue }) {
       name="text"
       placeholder="Enter your New year Resolutions"
       type="text"
+      maxLength={500}
     />
   );
 }
